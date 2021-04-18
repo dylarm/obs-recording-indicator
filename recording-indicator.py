@@ -1,23 +1,11 @@
 import obspython as obs
 
-VERSION = "v0.0.2"
+VERSION = "v0.0.2a"
 
 
 class _G:
     def __init__(self, source_name=None):
         self.source_name = source_name
-
-    def set_visible(self):
-        current_scene = obs.obs_scene_from_source(obs.obs_frontend_get_current_scene())
-        scene_item = obs.obs_scene_find_source(current_scene, self.source_name)
-        obs.obs_sceneitem_set_visible(scene_item, True)
-        obs.obs_scene_release(current_scene)
-
-    def set_invisible(self):
-        current_scene = obs.obs_scene_from_source(obs.obs_frontend_get_current_scene())
-        scene_item = obs.obs_scene_find_source(current_scene, self.source_name)
-        obs.obs_sceneitem_set_visible(scene_item, False)
-        obs.obs_scene_release(current_scene)
 
     def set_visible_all(self, visible):
         scenes = obs.obs_frontend_get_scenes()
@@ -74,11 +62,6 @@ def on_event(event):
     elif event == obs.OBS_FRONTEND_EVENT_RECORDING_STOPPED:
         # Make source invisible again
         make_invisible()
-    elif event == obs.OBS_FRONTEND_EVENT_SCENE_CHANGED:
-        if obs.obs_frontend_recording_active():
-            make_visible()
-        else:
-            make_invisible()
 
 
 def script_load(settings):
