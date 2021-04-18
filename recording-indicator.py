@@ -1,9 +1,9 @@
 import obspython as obs
 
-VERSION = "v0.0.2a"
+VERSION = "v0.0.2b"
 
 
-class _G:
+class _Functions:
     def __init__(self, source_name=None):
         self.source_name = source_name
 
@@ -21,19 +21,11 @@ class _G:
         obs.source_list_release(scenes)
 
 
-g = _G()
-
-
-def make_visible():
-    g.set_visible_all(True)
-
-
-def make_invisible():
-    g.set_visible_all(False)
+f = _Functions()
 
 
 def script_update(settings):
-    g.source_name = obs.obs_data_get_string(settings, "source")
+    f.source_name = obs.obs_data_get_string(settings, "source")
 
 
 def script_properties():
@@ -62,10 +54,10 @@ def script_description():
 def on_event(event):
     if event == obs.OBS_FRONTEND_EVENT_RECORDING_STARTED:
         # Make source visible
-        make_visible()
+        f.set_visible_all(True)
     elif event == obs.OBS_FRONTEND_EVENT_RECORDING_STOPPED:
         # Make source invisible again
-        make_invisible()
+        f.set_visible_all(False)
 
 
 def script_load(settings):
