@@ -1,4 +1,4 @@
-# obs-recording-indicator
+# OBS Recording Indicator
 An in-stream source toggle for if recording is active or not in OBS Studio
 
 If recording is active, then the specified source is visible.
@@ -14,3 +14,9 @@ If you are using Windows, make sure to have Python 3.6 installed and OBS Studio 
 
 ## Current limitations
 * Source must be manually added (and positioned) to each scene it will be used it (this may or may not be a limitation?)
+
+## Ideas / Goals / Roadmap
+* Have a(n optional) source for when recording is paused
+* Have a(n optional) source for when not recording
+* Allow the creation/deletion of "default" sources for recording/paused/not recording
+    * Maybe a custom location as well? (ambitious)
