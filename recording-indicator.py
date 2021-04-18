@@ -1,6 +1,6 @@
 import obspython as obs
 
-VERSION = "v0.0.1d"
+VERSION = "v0.0.2"
 
 
 class _G:
@@ -19,16 +19,25 @@ class _G:
         obs.obs_sceneitem_set_visible(scene_item, False)
         obs.obs_scene_release(current_scene)
 
+    def set_visible_all(self, visible):
+        scenes = obs.obs_frontend_get_scenes()
+        for scene in scenes:
+            scene_test = obs.obs_scene_from_source(scene)
+            in_scene = obs.obs_scene_find_source(scene_test, self.source_name)
+            if in_scene:
+                obs.obs_sceneitem_set_visible(in_scene, visible)
+        obs.source_list_release(scenes)
+
 
 g = _G()
 
 
 def make_visible():
-    g.set_visible()
+    g.set_visible_all(True)
 
 
 def make_invisible():
-    g.set_invisible()
+    g.set_visible_all(False)
 
 
 def script_update(settings):
