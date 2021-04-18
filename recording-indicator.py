@@ -8,6 +8,10 @@ class _G:
         self.source_name = source_name
 
     def set_visible_all(self, visible):
+        """Cycle through all scenes, manually toggling visibility of the source
+
+        Idea from GitHub user LukyLurks
+        """
         scenes = obs.obs_frontend_get_scenes()
         for scene in scenes:
             scene_test = obs.obs_scene_from_source(scene)
